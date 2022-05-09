@@ -2,8 +2,10 @@ package com.moondy.moviereview.controller;
 
 import com.moondy.moviereview.dto.ReviewDTO;
 import com.moondy.moviereview.dto.ReviewFullDTO;
+import com.moondy.moviereview.dto.ReviewRegisterDTO;
 import com.moondy.moviereview.service.ReviewService;
 import java.util.List;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +36,9 @@ public class ReviewController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<String> addReview(@RequestBody ReviewDTO reviewDTO) {
-        boolean resultSeq = reviewService.insertReview(reviewDTO);
-        return new ResponseEntity (resultSeq, HttpStatus.OK);
+    public ResponseEntity<String> addReview(@RequestBody @Valid ReviewRegisterDTO reviewRegDTO) {
+        String result = reviewService.insertReview(reviewRegDTO);
+        return new ResponseEntity (result, HttpStatus.OK);
     }
 
 

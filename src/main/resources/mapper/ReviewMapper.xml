@@ -44,7 +44,7 @@
   </select>
 
 
-  <insert id="insertReview" parameterType="reviewDTO">
+  <insert id="insertReview" parameterType="ReviewRegDTO">
     INSERT INTO review (
       <include refid="reviewColumns"/>
     ) VALUES (

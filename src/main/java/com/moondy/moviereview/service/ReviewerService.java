@@ -25,7 +25,7 @@ public class ReviewerService {
             if (existRev != null) {
                 return "아이디가 이미 존재합니다.";
             }
-            result = reviewerMapper.insertReviewer(reviewerDTO) ? "성공" : "실패";
+            result = reviewerMapper.insertReviewer(reviewerDTO) ? "성공" : result;
         } catch (Exception e) {
             logger.info(">>> " + e);
         }
