@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.moondy.moviereview.mapper.ReviewMapper">
+  <sql id="reviewColumns">
+    seq,
+    score,
+    created_dt,
+    title,
+    director,
+    actor,
+    comments,
+    reviewer_id
+  </sql>
+
+
+  <select id="getAllReviews" resultType="ReviewDTO">
+    SELECT *
+    FROM review
+  </select>
+<!--  <select id="getAllReviews" resultType="java.util.List">-->
+<!--    SELECT-->
+<!--    FROM review-->
+<!--    <foreach collection="list" item="row" index="seq" separator="," open="(" close=")">-->
+<!--      #{row}-->
+<!--    </foreach>-->
+<!--  </select>-->
+
+  <select id="getAllWithRname" resultType="ReviewFullDTO">
+    SELECT
+        rv.seq,
+        rv.score,
+        rv.created_dt,
+        rv.title,
+        rv.director,
+        rv.actor,
+        rv.comments,
+        rv.reviewer_id,
+        r.name as reviewer_name
+    FROM review rv
+    LEFT JOIN reviewer r
+        on rv.reviewer_id = r.id
+  </select>
+
+
+  <insert id="insertReview" parameterType="reviewDTO">
+    INSERT INTO review (
+      <include refid="reviewColumns"/>
+    ) VALUES (
+              DEFAULT,
+              #{score},
+              CURRENT_DATE,
+              #{title},
+              #{director},
+              #{actor},
+              #{comments},
+              #{reviewerId}
+    )
+  </insert>
+
+</mapper>
+
