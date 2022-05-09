@@ -13,4 +13,6 @@ public interface ReviewerMapper {
     ReviewerDTO getOneReviewer(String id);
 
     boolean updateReviewer(ReviewerDTO reviewerDTO);
+
+    boolean deleteReviewer(String id);
 }

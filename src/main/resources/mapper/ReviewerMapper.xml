@@ -35,5 +35,11 @@
     WHERE
         id = #{id}
   </update>
+
+  <delete id="deleteReviewer" parameterType="String">
+    DELETE FROM reviewer
+    WHERE
+        id = #{id}
+  </delete>
 </mapper>
 
