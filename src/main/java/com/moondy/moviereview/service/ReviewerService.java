@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ReviewerService {
     private final ReviewerMapper reviewerMapper;
-    private static final Logger logger = LoggerFactory.getLogger(ReviewService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ReviewerService.class);
 
     public List<ReviewerDTO> getAllReviewerSvc() {
         return reviewerMapper.getAllReviewers();
@@ -44,5 +44,26 @@ public class ReviewerService {
             logger.info(">>> " + e);
         }
         return result;
+    }
+
+    public String deleteReviewer(String id) {
+        String result = "실패";
+        try {
+            result = reviewerMapper.deleteReviewer(id) ? "성공" : "실패. ID를 확인해주세요";
+        } catch (Exception e) {
+            logger.info(">>> " + e);
+        }
+        return result;
+    }
+
+    public ReviewerDTO getOne(String id) {
+        ReviewerDTO target = null;
+        try {
+            target = reviewerMapper.getOneReviewer(id);
+            // target 이 존재하지 않을 때 예외처리 하고 싶은데, 추후 CommonResponse 만들게 되면 처리할 예정
+        } catch (Exception e) {
+            logger.info(">>> " + e);
+        }
+        return target;
     }
 }
