@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.moondy.moviereview.mapper.ReviewerMapper">
+
+  <sql id="reviewerColumns">
+    id,
+    name
+  </sql>
+
+  <select id="getAllReviewers" resultType="ReviewerDTO">
+    SELECT *
+    FROM reviewer
+  </select>
+
+  <select id="getOneReviewer" parameterType="string" resultType="ReviewerDTO">
+    SELECT *
+    FROM reviewer
+    WHERE id = #{id}
+  </select>
+
+  <insert id="insertReviewer" parameterType="ReviewerDTO">
+    INSERT INTO reviewer (
+        <include refid="reviewerColumns"/>
+    ) VALUES (
+              #{id},
+              #{name})
+  </insert>
+
+  <update id="updateReviewer" parameterType="ReviewerDTO">
+    UPDATE reviewer
+    SET
+        name = #{name}
+    WHERE
+        id = #{id}
+  </update>
+</mapper>
+
