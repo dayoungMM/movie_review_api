@@ -16,7 +16,7 @@
     - 평가자 이름
     - 평가자 Id
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1c335894-c793-4514-b082-d3e375065873/Untitled.png)
+![image](https://user-images.githubusercontent.com/56625356/167633377-7e89aadb-eaf8-43c4-b358-660693c79399.png)
 
 ## API Document
 
