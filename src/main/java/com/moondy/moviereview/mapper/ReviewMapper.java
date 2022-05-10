@@ -21,5 +21,4 @@ public interface ReviewMapper {
     boolean deleteReview(int seq);
 
     List<ReviewDTO> getAllByTitle(String title);
-
 }

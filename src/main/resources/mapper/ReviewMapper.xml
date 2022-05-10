@@ -14,7 +14,6 @@
     reviewer_id
   </sql>
 
-
   <select id="getAllReviews" resultType="ReviewDTO">
     SELECT *
     FROM review
@@ -25,7 +24,6 @@
     FROM review
     WHERE seq = #{seq}
   </select>
-
 
   <select id="getAllWithRname" resultType="ReviewFullDTO">
     SELECT
