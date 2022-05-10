@@ -40,4 +40,44 @@ public class ReviewService {
     public List<ReviewFullDTO> getAllFull() {
         return reviewMapper.getAllWithRname();
     }
+
+    public String updateReview(ReviewDTO reviewDTO) {
+        String result = "실패";
+        try {
+            ReviewDTO target = reviewMapper.getOneReview(reviewDTO.getSeq());
+            if (target == null) {
+                return "존재하지 않는 리뷰입니다. seq가 정확한지 확인해주세요.";
+            }
+            target.setTitle(reviewDTO.getTitle() == null ? target.getTitle() : reviewDTO.getTitle());
+            target.setDirector(reviewDTO.getDirector() == null ? target.getDirector() : reviewDTO.getDirector());
+            target.setActor(reviewDTO.getActor() == null ? target.getActor() : reviewDTO.getActor());
+            target.setComments(reviewDTO.getComments() == null ? target.getComments() : reviewDTO.getComments());
+            target.setScore(reviewDTO.getScore());
+
+            result = reviewMapper.updateReview(target) ? "성공" : "실패";
+        } catch (Exception e) {
+            logger.info(">>> " + e);
+        }
+        return result;
+    }
+
+    public String deleteReview(int seq) {
+        String result = "실패";
+        try {
+            result = reviewMapper.deleteReview(seq) ? "성공" : "실패. seq를 확인하세요.";
+        } catch (Exception e) {
+            logger.info(">>> " + e);
+        }
+        return result;
+    }
+
+    public List<ReviewDTO> getByTitle(String title) {
+        List<ReviewDTO> result = null;
+        try {
+            result = reviewMapper.getAllByTitle(title);
+        } catch (Exception e) {
+            logger.info(">>> " + e);
+        }
+        return result;
+    }
 }

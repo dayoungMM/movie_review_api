@@ -13,4 +13,13 @@ public interface ReviewMapper {
     boolean insertReview(ReviewRegisterDTO reviewRegDTO);
 
     List<ReviewFullDTO> getAllWithRname();
+
+    ReviewDTO getOneReview(int seq);
+
+    boolean updateReview(ReviewDTO reviewDTO);
+
+    boolean deleteReview(int seq);
+
+    List<ReviewDTO> getAllByTitle(String title);
+
 }

@@ -19,13 +19,13 @@
     SELECT *
     FROM review
   </select>
-<!--  <select id="getAllReviews" resultType="java.util.List">-->
-<!--    SELECT-->
-<!--    FROM review-->
-<!--    <foreach collection="list" item="row" index="seq" separator="," open="(" close=")">-->
-<!--      #{row}-->
-<!--    </foreach>-->
-<!--  </select>-->
+
+  <select id="getOneReview" parameterType="int" resultType="ReviewDTO">
+    SELECT *
+    FROM review
+    WHERE seq = #{seq}
+  </select>
+
 
   <select id="getAllWithRname" resultType="ReviewFullDTO">
     SELECT
@@ -41,6 +41,12 @@
     FROM review rv
     LEFT JOIN reviewer r
         on rv.reviewer_id = r.id
+  </select>
+
+  <select id="getAllByTitle" parameterType="String" resultType="ReviewDTO">
+    SELECT *
+    FROM review
+    WHERE title LIKE CONCAT('%', #{title}, '%')
   </select>
 
 
@@ -59,5 +65,22 @@
     )
   </insert>
 
+  <update id="updateReview" parameterType="ReviewDTO">
+    UPDATE review
+    SET
+      score = #{score},
+      title = #{title},
+      director = #{director},
+      actor = #{actor},
+      comments = #{comments}
+    WHERE
+      seq = #{seq}
+  </update>
+
+  <delete id="deleteReview" parameterType="int">
+    DELETE FROM review
+    WHERE
+      seq = #{seq}
+  </delete>
 </mapper>
 
